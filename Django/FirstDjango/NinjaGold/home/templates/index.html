@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<body>
+    <header>
+        <h1>Ninja Gold</h1>
+        <a href="/reset"><button>Reset</button></a>
+    </header>
+    <h3>Your Gold: <input type="text" disabled value="{{request.session.gold}}"></h3>
+    <div id="buildings">
+        {% for building in buildings %}
+        <div>
+            <h1>{{ building.display_name }}</h1>
+            <p>{{ building.description }}</p>
+            <form action="/gold" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="{{ building.name}}">
+                <button>Find Gold!</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    <h2>Activities</h2>
+    <div id="activities">
+    {% for activity in request.session.activities reversed %}
+        <p class="{{ activity.result}}">{{ activity.message }}</p>
+    {% endfor %}
+    </div>
+</body>
+</html>

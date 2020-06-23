@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block subtitle %} - Book Details{% endblock %}
+{% block content %}
+<h1>{{ book.title }}</h1>
+<p><strong>Id</strong> {{ book.id }}</p>
+<p><strong>Description</strong> {{ book.description }}</p>
+<p><strong>Authors</strong></p>
+<ul>
+    {% for author in book.authors.all %}
+    <li>{{ author.full_name }}</li>
+    {% endfor %}
+</ul>
+{% if authors %}
+<form action="/books/{{ book.id }}/assign" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="author_id">Add Author</label>
+        <select name="author_id" id="author_id" class="form-control">
+            {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.full_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button class="btn btn-primary">Add</button>
+</form>
+{% endif %}
+{% endblock %}

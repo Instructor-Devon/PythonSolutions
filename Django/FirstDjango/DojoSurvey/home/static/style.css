@@ -1,0 +1,13 @@
+body {
+    padding: 2em;
+    background-color: #EEDDEE;
+}
+form, div#container {
+    padding: 2em;
+}
+div#container span {
+    font-weight: bold;
+}
+#container > h2 {
+    border-bottom: solid 1px black;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script
+        defer
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+		
+    <script defer src="{% static 'js/main.js' %}"></script>
+    <title>AJAX Clicker</title>
+</head>
+<body>
+    <h1>Clicker Game</h1>
+    <h2>#<span id="clicks"></span> Clicks</h2>
+    <button id="clicker">Click!</button>
+</body>
+</html>
