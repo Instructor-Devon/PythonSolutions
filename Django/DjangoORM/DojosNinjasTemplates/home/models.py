@@ -10,7 +10,3 @@ class Ninja(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     dojo = models.ForeignKey(Dojo, related_name='ninjas', on_delete=models.CASCADE)
-
-    @property
-    def name(self):
-        return f"{self.first_name} {self.last_name}"
