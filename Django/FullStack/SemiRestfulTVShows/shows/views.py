@@ -13,13 +13,13 @@ def new(request):
 
 def create(request):
     # CREATE THE SHOW
-    Show.objects.create(
+    new_show = Show.objects.create(
         title = request.POST['title'],
         network = request.POST['network'],
         release_date = request.POST['release_date'],
         description = request.POST['description']
     )
-    return redirect('/shows')
+    return redirect(f'/shows/{new_show.id}')
 
 def edit(request, show_id):
     one_show = Show.objects.get(id=show_id)
@@ -42,7 +42,10 @@ def update(request, show_id):
 
 def show(request, show_id):
     # query for one show with show_id
-    one_show = Show.objects.get(id=show_id)
+    try:
+        one_show = Show.objects.get(id=show_id)
+    except Show.DoesNotExist:
+        return redirect('/')
     context = {
         'show': one_show
     }
